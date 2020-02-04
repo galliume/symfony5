@@ -2,27 +2,34 @@
 
 namespace App\Controller;
 
+use App\Repository\BookRepository;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Security\Core\Security;
 use App\Entity\Book;
 
 class BooksController extends AbstractController
 {
-    private $security;
+    private $bookRepository;
 
-    public function __construct(Security $security)
+    public function __construct(BookRepository $bookRepository)
     {
-        $this->security = $security;
+        $this->bookRepository = $bookRepository;
     }
 
     /**
-     * @Route("/api/books", name="list_books", methods={"GET", "OPTIONS"})
+     * @Route("/api/books/{search?}", name="list_books", methods={"GET", "OPTIONS"})
      */
-    public function listBook(): JsonResponse
+    public function books(Request $request): JsonResponse
     {
-        $books =  $this->getDoctrine()->getRepository(Book::class)->findAll();
+        $search = $request->query->get('search', false);
+
+        if (false !== $search) {
+            $books = $this->bookRepository->searchByTitle($search);
+        } else {
+            $books = $this->bookRepository->findAll();
+        }
 
         return $this->json(['books' => $books]);
     }
