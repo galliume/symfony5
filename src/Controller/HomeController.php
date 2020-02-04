@@ -2,13 +2,13 @@
 
 namespace App\Controller;
 
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Security;
 use App\Entity\Book;
 
-class BooksController extends AbstractController
+class HomeController extends AbstractController
 {
     private $security;
 
@@ -18,12 +18,10 @@ class BooksController extends AbstractController
     }
 
     /**
-     * @Route("/api/books", name="list_books", methods={"GET", "OPTIONS"})
+     * @Route("/", name="home", methods={"GET"})
      */
-    public function listBook(): JsonResponse
+    public function listBook(): Response
     {
-        $books =  $this->getDoctrine()->getRepository(Book::class)->findAll();
-
-        return $this->json(['books' => $books]);
+        return new Response('<html><body>Home page</body></html>');
     }
 }
