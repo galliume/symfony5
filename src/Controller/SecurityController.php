@@ -4,34 +4,49 @@ namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use Symfony\Component\Security\Core\Security;
+use App\Repository\UserRepository;
 
 class SecurityController extends AbstractController
 {
-    private $security;
+    private $userRepository;
 
-     public function __construct(Security $security)
-     {
-         $this->security = $security;
-     }
+    public function __construct(UserRepository $userRepository)
+    {
+        $this->userRepository = $userRepository;
+    }
 
     /**
-     * @Route("/login", name="login")
+     * @Route("/api/login", name="app_login", methods={"POST", "OPTIONS", "GET"} )
      */
-    public function login(AuthenticationUtils $authenticationUtils): JsonResponse
+    public function logins(AuthenticationUtils $authenticationUtils, Request $request): JsonResponse
     {
+        // if ($this->getUser()) {
+        //     return $this->redirectToRoute('target_path');
+        // }
 
         // get the login error if there is one
         $error = $authenticationUtils->getLastAuthenticationError();
         // last username entered by the user
         $lastUsername = $authenticationUtils->getLastUsername();
 
-
-        return $this->json([
-            'last_username' => $lastUsername,
-            'error' => $error
+        return $this->json(['user' => [
+                'last_username' => $lastUsername,
+                'error' => (null !== $error) ? $error->getMessage() : null,
+                'apiToken' => (null === $error) ? $request->getSession()->get('security.token_storage')->getUser()->getApiToken() : null
+            ]
         ]);
+    }
+
+    /**
+     * @Route("/logout", name="app_logout")
+     */
+    public function logout()
+    {
+        throw new \Exception('This method can be blank - it will be intercepted by the logout key on your firewall');
     }
 }
