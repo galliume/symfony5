@@ -35,7 +35,7 @@ class SecurityController extends AbstractController
         $lastUsername = $authenticationUtils->getLastUsername();
 
         return $this->json(['user' => [
-                'last_username' => $lastUsername,
+                'username' => $lastUsername,
                 'error' => (null !== $error) ? $error->getMessage() : null,
                 'apiToken' => (null === $error) ? $request->getSession()->get('security.token_storage')->getUser()->getApiToken() : null
             ]
@@ -45,8 +45,8 @@ class SecurityController extends AbstractController
     /**
      * @Route("/logout", name="app_logout")
      */
-    public function logout()
+    public function logout(): JsonResponse
     {
-        throw new \Exception('This method can be blank - it will be intercepted by the logout key on your firewall');
+        return $this->json(['logout' => true]);
     }
 }

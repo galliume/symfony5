@@ -17,7 +17,7 @@ security:
         main:
             anonymous: lazy
             logout:
-                path: app_logout
+                path: logout
                 # where to redirect after logout
                 # target: app_any_route
 
