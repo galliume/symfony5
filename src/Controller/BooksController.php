@@ -30,6 +30,6 @@ class BooksController extends AbstractController
             $books = $this->bookRepository->findAll();
         }
 
-        return $this->json(['books' => $books]);
+        return $this->json($books);
     }
 }
