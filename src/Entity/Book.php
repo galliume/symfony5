@@ -83,7 +83,8 @@ class Book implements \JsonSerializable
             "id" => $this->getId(),
             "isbn" => $this->getIsbn(),
             "title" => $this->getTitle(),
-            "author" => $this->getAuthor()
+            "author" => $this->getAuthor(),
+            "thumbnail" => $this->getThumbnail()
         ];
     }
 
