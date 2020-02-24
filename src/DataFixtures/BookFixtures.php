@@ -24,7 +24,7 @@ class BookFixtures extends Fixture
                 'thumbnail' => 'dracula.jpg',
             ],
             [
-                'isbn' => '978-2290330586',
+                'isbn' => '2290102342',
                 'author' => 'Glen Cook',
                 'title' => 'La Compagnie noire, Tome 1',
                 'thumbnail' => 'compagnienoire_tome1.jpg',
