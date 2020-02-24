@@ -25,7 +25,7 @@ security:
                 authenticators:
                     - App\Security\LoginFormAuthenticator
                     - App\Security\TokenAuthenticator
-                entry_point: App\Security\LoginFormAuthenticator
+                entry_point: App\Security\TokenAuthenticator
 
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#firewalls-authentication

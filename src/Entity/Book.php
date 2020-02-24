@@ -31,6 +31,11 @@ class Book implements \JsonSerializable
      */
     private $author;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $thumbnail;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -80,5 +85,17 @@ class Book implements \JsonSerializable
             "title" => $this->getTitle(),
             "author" => $this->getAuthor()
         ];
+    }
+
+    public function getThumbnail(): ?string
+    {
+        return $this->thumbnail;
+    }
+
+    public function setThumbnail(?string $thumbnail): self
+    {
+        $this->thumbnail = $thumbnail;
+
+        return $this;
     }
 }

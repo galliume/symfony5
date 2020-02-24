@@ -15,11 +15,13 @@ class BookFixtures extends Fixture
                 'isbn' => '2-221-02602-0',
                 'author' => 'Frank Herbert',
                 'title' => 'Dune',
+                'thumbnail' => 'dune.jpg'
             ],
             [
                 'isbn' => '1-905328-14-1',
                 'author' => 'Bram Stoker',
-                'title' => 'Dracula'
+                'title' => 'Dracula',
+                'thumbnail' => 'dracula.jpg'
             ]
         ];
 
@@ -28,7 +30,7 @@ class BookFixtures extends Fixture
             $book->setAuthor($item['author']);
             $book->setTitle($item['title']);
             $book->setIsbn($item['isbn']);
-
+            $book->setThumbnail($item['thumbnail']);
             $manager->persist($book);
         }
 
