@@ -21,7 +21,13 @@ class BookFixtures extends Fixture
                 'isbn' => '1-905328-14-1',
                 'author' => 'Bram Stoker',
                 'title' => 'Dracula',
-                'thumbnail' => 'dracula.jpg'
+                'thumbnail' => 'dracula.jpg',
+            ],
+            [
+                'isbn' => '978-2290330586',
+                'author' => 'Glen Cook',
+                'title' => 'La Compagnie noire, Tome 1',
+                'thumbnail' => 'compagnienoire_tome1.jpg',
             ]
         ];
 

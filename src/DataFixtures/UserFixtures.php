@@ -20,7 +20,7 @@ class UserFixtures extends Fixture
     {
         $user = new User();
         $user->setEmail('email@mail.com');
-        $user->setApiToken('_apiTokenXYZ_@321');
+        $user->setApiToken(NULL);
         $user->setRoles(['ROLE_USER']);
 
         $user->setPassword($this->passwordEncoder->encodePassword(
